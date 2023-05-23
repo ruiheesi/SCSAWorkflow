@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
 
+# test
 def histogram(adata, column, group_by=None, together=False, **kwargs):
     """
     Plot the histogram of cells based specific column.
