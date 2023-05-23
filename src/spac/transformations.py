@@ -1,14 +1,10 @@
-import re
-import seaborn
 import numpy as np
 import scanpy as sc
 import pandas as pd
-import anndata as ad
 import scanpy.external as sce
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import MinMaxScaler
 
 
+# test1
 def phenograph_clustering(adata, features, layer, k=30):
     """
     Calculate automatic phenotypes using phenograph.
@@ -141,19 +137,24 @@ def batch_normalize(adata, obs, layer, method="median", log=False):
     new_df = pd.concat(new_df_list)
     adata.layers[layer] = new_df
 
-def rename_clustering(adata, column, new_phenotypes, new_column_name="renamed_clusters"):
+
+def rename_clustering(adata, column,
+                      new_phenotypes,
+                      new_column_name="renamed_clusters"):
     """
-    Rename and group clusters in an AnnData object based on the provided
-    dictionary, keeping the original observation column.
+    Rename and group clusters in an AnnData object based on the
+    provideddictionary, keeping the original observation column.
 
     Parameters
     ----------
     adata : anndata.AnnData
         The AnnData object.
     column : str
-        Name of the column in adata.obs containing the original cluster labels.
+        Name of the column in adata.obs containing
+        the original cluster labels.
     new_phenotypes : dict
-        A dictionary mapping the original cluster names to the new phenotype names.
+        A dictionary mapping the original cluster names
+        to the new phenotype names.
     new_column_name : str, optional, default: "renamed_clusters"
         The name of the new column to be created in the AnnData object
         containing the renamed cluster labels.
@@ -164,7 +165,7 @@ def rename_clustering(adata, column, new_phenotypes, new_column_name="renamed_cl
         The updated Anndata object with the new column containing the renamed
         cluster labels.
     """
-    
+
     """
     # An example to call the function:
     adata = your_anndata_object
@@ -187,17 +188,19 @@ def rename_clustering(adata, column, new_phenotypes, new_column_name="renamed_cl
     # Convert the keys in new_phenotypes to the same data type as the unique
     # values in the observation column
     new_phenotypes = {
-        type(unique_values[0])(key): value for key, value in new_phenotypes.items()
+        type(unique_values[0])(key): value
+        for key, value in new_phenotypes.items()
     }
 
     # Check if all keys in new_phenotypes are present in the unique values of
     # the observation column
     if not all(key in unique_values for key in new_phenotypes.keys()):
-        raise ValueError(
-            "All keys in the new_phenotypes dictionary should match the unique "
-            "values in the observation column."
-        )
-    
+        error_message = "All keys in the new_phenotypes dictionary " + \
+                        "should match the unique values in " + \
+                        "the observation column."
+
+        raise ValueError(error_message)
+
     # Create a new column in adata.obs with the updated cluster names
     adata.obs[new_column_name] = adata.obs[column].map(new_phenotypes)\
         .fillna(adata.obs[column]).astype("category")
