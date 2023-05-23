@@ -10,4 +10,4 @@ on:
     branches: ['main', 'release*', 'dev', 'master']
 jobs:
   Activating_Parser:
-    uses: fnlcr-bids-sdsi/gitflow-py/.github/workflows/parser.yml@main
+    uses: fnlcr-dmap/gitflow-py/.github/workflows/parser.yml@main
