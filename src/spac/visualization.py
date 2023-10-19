@@ -7,6 +7,98 @@ import scanpy as sc
 import math
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap, BoundaryNorm
+from spac.utils import check_table, check_annotation, check_feature
+
+
+def dimensionality_reduction_plot(adata, method, annotation=None, feature=None,
+                                  layer=None, ax=None, **kwargs):
+    """
+    Visualize scatter plot in t-SNE or UMAP basis.
+
+    Parameters
+    ----------
+    adata : anndata.AnnData
+        The AnnData object with coordinates precomputed by the 'tsne' or 'UMAP'
+        function and stored in 'adata.obsm["X_tsne"]' or 'adata.obsm["X_umap"]'
+    method : str
+        Dimensionality reduction method to visualize.
+        Choose from {'tsne', 'umap'}.
+    annotation : str, optional
+        The name of the column in `adata.obs` to use for coloring
+        the scatter plot points based on cell annotations.
+    feature : str, optional
+        The name of the gene or feature in `adata.var_names` to use
+        for coloring the scatter plot points based on feature expression.
+    layer : str, optional
+        The name of the data layer in `adata.layers` to use for visualization.
+        If None, the main data matrix `adata.X` is used.
+    ax : matplotlib.axes.Axes, optional (default: None)
+        A matplotlib axes object to plot on.
+        If not provided, a new figure and axes will be created.
+    **kwargs
+        Parameters passed to scanpy.pl.tsne or scanpy.pl.umap function.
+
+    Returns
+    -------
+    fig : matplotlib.figure.Figure
+        The created figure for the plot.
+    ax : matplotlib.axes.Axes
+        The axes of the plot.
+    """
+
+    # Check if both annotation and feature are specified, raise error if so
+    if annotation and feature:
+        raise ValueError(
+            "Please specify either an annotation or a feature for coloring, "
+            "not both.")
+
+    # Use utility functions for input validation
+    check_table(adata, tables=layer)
+    if annotation:
+        check_annotation(adata, annotations=annotation)
+    if feature:
+        check_feature(adata, features=[feature])
+
+    # Validate the method and check if the necessary data exists in adata.obsm
+    if method == 'umap':
+        key = 'X_umap'
+    elif method == 'tsne':
+        key = 'X_tsne'
+    else:
+        raise ValueError("Method should be one of {'tsne', 'umap'}.")
+
+    if key not in adata.obsm.keys():
+        error_msg = (
+            f"{key} coordinates not found in adata.obsm."
+            f"Please run {method.upper()} before calling this function."
+        )
+        raise ValueError(error_msg)
+
+    # Determine coloring scheme
+    color = None
+    if annotation:
+        color = annotation
+    elif feature:
+        color = feature
+
+    # If a layer is provided, use it for visualization
+    if layer:
+        adata.X = adata.layers[layer]
+
+    # Add color column to the kwargs for the scanpy plot
+    kwargs['color'] = color
+
+    # Plot the chosen method
+    if method == 'tsne':
+        sc.pl.tsne(adata, ax=ax, **kwargs)
+    else:
+        sc.pl.umap(adata, ax=ax, **kwargs)
+
+    fig = plt.gcf()  # Get the current figure
+    if ax is None:  # If no ax was provided, get the current ax
+        ax = plt.gca()
+
+    return fig, ax
 
 
 def tsne_plot(adata, color_column=None, ax=None, **kwargs):
@@ -62,74 +154,119 @@ def tsne_plot(adata, color_column=None, ax=None, **kwargs):
     return fig, ax
 
 
-def histogram(adata, feature_name=None, observation_name=None, layer=None,
+def histogram(adata, feature=None, annotation=None, layer=None,
               group_by=None, together=False, ax=None, **kwargs):
     """
     Plot the histogram of cells based on a specific feature from adata.X
-    or observation from adata.obs.
+    or annotation from adata.obs.
 
     Parameters
     ----------
     adata : anndata.AnnData
         The AnnData object.
 
-    feature_name : str, optional
+    feature : str, optional
         Name of continuous feature from adata.X to plot its histogram.
 
-    observation_name : str, optional
-        Name of the observation from adata.obs to plot its histogram.
+    annotation : str, optional
+        Name of the annotation from adata.obs to plot its histogram.
+
+    layer : str, optional
+        Name of the layer in adata.layers to plot its histogram.
 
     group_by : str, default None
         Choose either to group the histogram by another column.
 
     together : bool, default False
-        If True, and if group_by !=None create one plot for all groups.
-        Otherwise, divide every histogram by the number of elements.
+        If True, and if group_by != None, create one plot combining all groups.
+        If False, create separate histograms for each group.
+        The appearance of combined histograms can be controlled using the
+        `multiple` and `element` parameters in **kwargs.
+        To control how the histograms are normalized (e.g., to divide the
+        histogram by the number of elements in every group), use the `stat`
+        parameter in **kwargs. For example, set `stat="probability"` to show
+        the relative frequencies of each group.
 
     ax : matplotlib.axes.Axes, optional
         An existing Axes object to draw the plot onto, optional.
 
     **kwargs
-        Parameters passed to seaborn histplot function.
+        Additional keyword arguments passed to seaborn histplot function.
+        Key arguments include:
+        - `multiple`: Determines how the subsets of data are displayed
+           on the same axes. Options include:
+            * "layer": Draws each subset on top of the other
+               without adjustments.
+            * "dodge": Dodges bars for each subset side by side.
+            * "stack": Stacks bars for each subset on top of each other.
+            * "fill": Adjusts bar heights to fill the axes.
+        - `element`: Determines the visual representation of the bins.
+           Options include:
+            * "bars": Displays the typical bar-style histogram (default).
+            * "step": Creates a step line plot without bars.
+            * "poly": Creates a polygon where the bottom edge represents
+               the x-axis and the top edge the histogram's bins.
+        - `log_scale`: Determines if the data should be plotted on
+           a logarithmic scale.
+        - `stat`: Determines the statistical transformation to use on the data
+           for the histogram. Options include:
+            * "count": Show the counts of observations in each bin.
+            * "frequency": Show the number of observations divided
+              by the bin width.
+            * "density": Normalize such that the total area of the histogram
+               equals 1.
+            * "probability": Normalize such that each bar's height reflects
+               the probability of observing that bin.
+        - `bins`: Specification of hist bins.
+            Can be a number (indicating the number of bins) or a list
+            (indicating bin edges). For example, `bins=10` will create 10 bins,
+            while `bins=[0, 1, 2, 3]` will create bins [0,1), [1,2), [2,3].
+            If not provided, the binning will be determined automatically.
 
     Returns
     -------
-    ax : matplotlib.axes.Axes
-        The axes of the histogram plot.
-
     fig : matplotlib.figure.Figure
         The created figure for the plot.
 
-    """
-    # Validate inputs
-    err = "adata must be an instance of anndata.AnnData, not {type(adata)}."
-    if not isinstance(adata, anndata.AnnData):
-        raise TypeError(err)
+    axs : list[matplotlib.axes.Axes]
+        List of the axes of the histogram plots.
 
-    df = adata.to_df()
+    """
+
+    # Use utility functions for input validation
+    if layer:
+        check_table(adata, tables=layer)
+    if annotation:
+        check_annotation(adata, annotations=annotation)
+    if feature:
+        check_feature(adata, features=feature)
+    if group_by:
+        check_annotation(adata, annotations=group_by)
+
+    # If layer is specified, get the data from that layer
+    if layer:
+        df = pd.DataFrame(
+            adata.layers[layer], index=adata.obs.index, columns=adata.var_names
+        )
+    else:
+        df = pd.DataFrame(
+             adata.X, index=adata.obs.index, columns=adata.var_names
+        )
+
     df = pd.concat([df, adata.obs], axis=1)
 
-    if feature_name and observation_name:
-        raise ValueError("Cannot pass both feature_name and observation_name,"
+    if feature and annotation:
+        raise ValueError("Cannot pass both feature and annotation,"
                          " choose one.")
 
-    if feature_name:
-        if feature_name not in df.columns:
-            raise ValueError("feature_name not found in adata.")
-        x = feature_name
-
-    if observation_name:
-        if observation_name not in df.columns:
-            raise ValueError("observation_name not found in adata.")
-        x = observation_name
-
-    if group_by and group_by not in df.columns:
-        raise ValueError("group_by not found in adata.")
+    data_column = feature if feature else annotation
 
     if ax is not None:
         fig = ax.get_figure()
     else:
         fig, ax = plt.subplots()
+
+    axs = []
 
     if group_by:
         groups = df[group_by].dropna().unique().tolist()
@@ -137,23 +274,29 @@ def histogram(adata, feature_name=None, observation_name=None, layer=None,
         if n_groups == 0:
             raise ValueError("There must be at least one group to create a"
                              " histogram.")
-        if together:
-            colors = sns.color_palette("hsv", n_groups)
-            sns.histplot(data=df.dropna(), x=x, hue=group_by, multiple="stack",
-                         palette=colors, ax=ax, **kwargs)
-            return fig, ax
-        else:
-            fig, axs = plt.subplots(n_groups, 1, figsize=(5, 5*n_groups))
-            if n_groups == 1:
-                axs = [axs]
-            for i, ax_i in enumerate(axs):
-                sns.histplot(data=df[df[group_by] == groups[i]].dropna(),
-                             x=x, ax=ax_i, **kwargs)
-                ax_i.set_title(groups[i])
-            return fig, axs
 
-    sns.histplot(data=df, x=x, ax=ax, **kwargs)
-    return fig, ax
+        if together:
+            # Set default values if not provided in kwargs
+            kwargs.setdefault("multiple", "stack")
+            kwargs.setdefault("element", "bars")
+
+            sns.histplot(data=df.dropna(), x=data_column, hue=group_by,
+                         ax=ax, **kwargs)
+            axs.append(ax)
+        else:
+            fig, ax_array = plt.subplots(
+                n_groups, 1, figsize=(5, 5 * n_groups)
+            )
+            for i, ax_i in enumerate(ax_array):
+                sns.histplot(data=df[df[group_by] == groups[i]].dropna(),
+                             x=data_column, ax=ax_i, **kwargs)
+                ax_i.set_title(groups[i])
+                axs.append(ax_i)
+    else:
+        sns.histplot(data=df, x=data_column, ax=ax, **kwargs)
+        axs.append(ax)
+
+    return fig, axs
 
 
 def heatmap(adata, column, layer=None, **kwargs):
@@ -213,123 +356,222 @@ def heatmap(adata, column, layer=None, **kwargs):
     return mean_feature, fig, ax
 
 
-def hierarchical_heatmap(adata, observation, layer=None, dendrogram=True,
-                         standard_scale=None, ax=None, **kwargs):
-    """
-    Generates a hierarchical clustering heatmap.
-    Cells are stratified by `observation`,
-    then mean intensities are calculated for each feature across all cells
-    to plot the heatmap using scanpy.tl.dendrogram and sc.pl.matrixplot.
+def hierarchical_heatmap(adata, annotation, features=None, layer=None,
+                         cluster_feature=False, cluster_annotations=False,
+                         standard_scale=None, z_score="annotation",
+                         swap_axes=False, rotate_label=False, **kwargs):
 
-    Parameters
+    """
+    Generates a hierarchical clustering heatmap and dendrogram.
+    By default, the dataset is assumed to have features as columns and
+    annotations as rows. Cells are grouped by annotation (e.g., phenotype),
+    and for each group, the average expression intensity of each feature
+    (e.g., protein or marker) is computed. The heatmap is plotted using
+    seaborn's clustermap.
+
+    Parameters:
     ----------
     adata : anndata.AnnData
         The AnnData object.
-    observation : str
-        Name of the observation in adata.obs to group by and calculate mean
+    annotation : str
+        Name of the annotation in adata.obs to group by and calculate mean
         intensity.
+    features : list or None, optional
+        List of feature names (e.g., markers) to be included in the
+        visualization. If None, all features are used. Default is None.
     layer : str, optional
         The name of the `adata` layer to use to calculate the mean intensity.
+        If not provided, uses the main matrix. Default is None.
+    cluster_feature : bool, optional
+        If True, perform hierarchical clustering on the feature axis.
+        Default is False.
+    cluster_annotations : bool, optional
+        If True, perform hierarchical clustering on the annotations axis.
+        Default is False.
+    standard_scale : int or None, optional
+        Whether to standard scale data (0: row-wise or 1: column-wise).
         Default is None.
-    dendrogram : bool, optional
-        If True, a dendrogram based on the hierarchical clustering between
-        the `observation` categories is computed and plotted. Default is True.
-    ax : matplotlib.axes.Axes, optional
-        A matplotlib axes object. If not provided, a new figure and axes
-        object will be created. Default is None.
+    z_score : str, optional
+        Specifies the axis for z-score normalization. Can be "feature" or
+        "annotation". Default is "annotation".
+    swap_axes : bool, optional
+        If True, switches the axes of the heatmap, effectively transposing
+        the dataset. By default (when False), annotations are on the vertical
+        axis (rows) and features are on the horizontal axis (columns).
+        When set to True, features will be on the vertical axis and
+        annotations on the horizontal axis. Default is False.
+    rotate_label : bool, optional
+        If True, rotate x-axis labels by 45 degrees. Default is False.
     **kwargs:
-        Additional parameters passed to sc.pl.matrixplot function.
+        Additional parameters passed to `sns.clustermap` function or its
+        underlying functions. Some essential parameters include:
+        - `cmap` : colormap
+          Colormap to use for the heatmap. It's an argument for the underlying
+          `sns.heatmap()` used within `sns.clustermap()`. Examples include
+          "viridis", "plasma", "coolwarm", etc.
+        - `{row,col}_colors` : Lists or DataFrames
+          Colors to use for annotating the rows/columns. Useful for visualizing
+          additional categorical information alongside the main heatmap.
+        - `{dendrogram,colors}_ratio` : tuple(float)
+          Control the size proportions of the dendrogram and the color labels
+          relative to the main heatmap.
+        - `cbar_pos` : tuple(float) or None
+          Specify the position and size of the colorbar in the figure. If set
+          to None, no colorbar will be added.
+        - `tree_kws` : dict
+          Customize the appearance of the dendrogram tree. Passes additional
+          keyword arguments to the underlying
+          `matplotlib.collections.LineCollection`.
+        - `method` : str
+          The linkage algorithm to use for the hierarchical clustering.
+          Defaults to 'centroid' in the function, but can be changed.
+        - `metric` : str
+          The distance metric to use for the hierarchy. Defaults to 'euclidean'
+          in the function.
 
-    Returns
+    Returns:
     ----------
     mean_intensity : pandas.DataFrame
-        A DataFrame containing the mean intensity of cells for each
-        observation.
-    matrixplot : scanpy.pl.matrixplot
-        A Scanpy matrixplot object.
+        A DataFrame containing the mean intensity of cells for each annotation.
+    clustergrid : seaborn.matrix.ClusterGrid
+        The seaborn ClusterGrid object representing the heatmap and
+        dendrograms.
+    dendrogram_data : dict
+        A dictionary containing hierarchical clustering linkage data for both
+        rows and columns. These linkage matrices can be used to generate
+        dendrograms with tools like scipy's dendrogram function. This offers
+        flexibility in customizing and plotting dendrograms as needed.
 
     Examples
     --------
-    >>> import matplotlib.pyplot as plt
-    >>> from spac.visualization import hierarchical_heatmap
-    >>> import anndata
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    import anndata
+    from spac.visualization import hierarchical_heatmap
+    X = pd.DataFrame([[1, 2], [3, 4]], columns=['gene1', 'gene2'])
+    annotation = pd.DataFrame(['type1', 'type2'], columns=['cell_type'])
+    all_data = anndata.AnnData(X=X, obs=annotation)
 
-    >>> X = pd.DataFrame([[1, 2], [3, 4]], columns=['gene1', 'gene2'])
-    >>> obs = pd.DataFrame(['type1', 'type2'], columns=['cell_type'])
-    >>> all_data = anndata.AnnData(X=X, obs=obs)
+    mean_intensity, clustergrid, dendrogram_data = hierarchical_heatmap(
+        all_data,
+        "cell_type",
+        layer=None,
+        z_score="annotation",
+        swap_axes=True,
+        cluster_feature=False,
+        cluster_annotations=True
+    )
 
-    >>> fig, ax = plt.subplots()  # Create a new figure and axes object
-    >>> mean_intensity, matrixplot = hierarchical_heatmap(all_data,
-    ...                                                   "cell_type",
-    ...                                                   layer=None,
-    ...                                                   standard_scale='var',
-    ...                                                   ax=None)
-    # Display the figure
-    # matrixplot.show()
+    # To display a standalone dendrogram using the returned linkage matrix:
+    import scipy.cluster.hierarchy as sch
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    # Convert the linkage data to type double
+    dendro_col_data = np.array(dendrogram_data['col_linkage'], dtype=np.double)
+
+    # Ensure the linkage matrix has at least two dimensions and
+    more than one linkage
+    if dendro_col_data.ndim == 2 and dendro_col_data.shape[0] > 1:
+        fig, ax = plt.subplots(figsize=(10, 7))
+        sch.dendrogram(dendro_col_data, ax=ax)
+        plt.title('Standalone Col Dendrogram')
+        plt.show()
+    else:
+        print("Insufficient data to plot a dendrogram.")
     """
 
-    # Check if observation exists in adata
-    if observation not in adata.obs.columns:
-        msg = (f"The observation '{observation}' does not exist in the "
-               f"provided AnnData object. Available observations are: "
-               f"{list(adata.obs.columns)}")
-        raise KeyError(msg)
+    # Use utility functions to check inputs
+    check_annotation(adata, annotations=annotation)
+    if features:
+        check_feature(adata, features=features)
+    if layer:
+        check_table(adata, tables=layer)
 
-    # Check if the layer exists in adata
-    if layer and layer not in adata.layers.keys():
-        msg = (f"The layer '{layer}' does not exist in the "
-               f"provided AnnData object. Available layers are: "
-               f"{list(adata.layers.keys())}")
-        raise KeyError(msg)
+    # Raise an error if there are any NaN values in the annotation column
+    if adata.obs[annotation].isna().any():
+        raise ValueError("NaN values found in annotation column.")
 
-    # Raise an error if there are any NaN values in the observation column
-    if adata.obs[observation].isna().any():
-        raise ValueError("NaN values found in observation column.")
+    # Convert the observation column to categorical if it's not already
+    if not pd.api.types.is_categorical_dtype(adata.obs[annotation]):
+        adata.obs[annotation] = adata.obs[annotation].astype('category')
 
     # Calculate mean intensity
-    intensities = adata.to_df(layer=layer)
-    labels = adata.obs[observation]
-    grouped = pd.concat([intensities, labels], axis=1).groupby(observation)
+    if layer:
+        intensities = pd.DataFrame(
+            adata.layers[layer],
+            index=adata.obs_names,
+            columns=adata.var_names
+        )
+    else:
+        intensities = adata.to_df()
+
+    labels = adata.obs[annotation]
+    grouped = pd.concat([intensities, labels], axis=1).groupby(annotation)
     mean_intensity = grouped.mean()
 
-    # Reset the index of mean_feature
-    mean_intensity = mean_intensity.reset_index()
+    # If swap_axes is True, transpose the mean_intensity
+    if swap_axes:
+        mean_intensity = mean_intensity.T
 
-    # Convert mean_intensity to AnnData
-    mean_intensity_adata = sc.AnnData(
-        X=mean_intensity.iloc[:, 1:].values,
-        obs=pd.DataFrame(
-            index=mean_intensity.index,
-            data={
-                observation: mean_intensity.iloc[:, 0]
-                .astype('category').values
-            }
-        ),
-        var=pd.DataFrame(index=mean_intensity.columns[1:])
+    # Map z_score based on user's input and the state of swap_axes
+    if z_score == "annotation":
+        z_score = 0 if not swap_axes else 1
+    elif z_score == "feature":
+        z_score = 1 if not swap_axes else 0
+
+    # Subset the mean_intensity DataFrame based on selected features
+    if features is not None and len(features) > 0:
+        mean_intensity = mean_intensity.loc[features]
+
+    # Determine clustering behavior based on swap_axes
+    if swap_axes:
+        row_cluster = cluster_feature  # Rows are features
+        col_cluster = cluster_annotations  # Columns are annotations
+    else:
+        row_cluster = cluster_annotations  # Rows are annotations
+        col_cluster = cluster_feature  # Columns are features
+
+    # Use seaborn's clustermap for hierarchical clustering and
+    # heatmap visualization.
+    clustergrid = sns.clustermap(
+        mean_intensity,
+        standard_scale=standard_scale,
+        z_score=z_score,
+        method='centroid',
+        metric='euclidean',
+        row_cluster=row_cluster,
+        col_cluster=col_cluster,
+        cmap="viridis",
+        **kwargs
     )
 
-    # Compute dendrogram if needed
-    if dendrogram:
-        sc.tl.dendrogram(
-            mean_intensity_adata,
-            groupby=observation,
-            var_names=mean_intensity_adata.var_names,
-            n_pcs=None
-        )
+    # Rotate x-axis tick labels if rotate_label is True
+    if rotate_label:
+        plt.setp(clustergrid.ax_heatmap.get_xticklabels(), rotation=45)
 
-    # Create the matrix plot
-    matrixplot = sc.pl.matrixplot(
-        mean_intensity_adata,
-        var_names=mean_intensity_adata.var_names,
-        groupby=observation, use_raw=False,
-        dendrogram=dendrogram,
-        standard_scale=standard_scale, cmap="viridis",
-        return_fig=True, ax=ax, show=False, **kwargs
-    )
-    return mean_intensity, matrixplot
+    # Extract the dendrogram data for return
+    dendro_row_data = None
+    dendro_col_data = None
+
+    if clustergrid.dendrogram_row:
+        dendro_row_data = clustergrid.dendrogram_row.linkage
+
+    if clustergrid.dendrogram_col:
+        dendro_col_data = clustergrid.dendrogram_col.linkage
+
+    # Define the dendrogram_data dictionary
+    dendrogram_data = {
+        'row_linkage': dendro_row_data,
+        'col_linkage': dendro_col_data
+    }
+
+    return mean_intensity, clustergrid, dendrogram_data
 
 
-def threshold_heatmap(adata, feature_cutoffs, observation):
+def threshold_heatmap(
+    adata, feature_cutoffs, annotation, layer=None, **kwargs
+):
     """
     Creates a heatmap for each feature, categorizing intensities into low,
     medium, and high based on provided cutoffs.
@@ -337,12 +579,19 @@ def threshold_heatmap(adata, feature_cutoffs, observation):
     Parameters
     ----------
     adata : anndata.AnnData
-        AnnData object containing the feature intensities in .X attribute.
+        AnnData object containing the feature intensities in .X attribute
+        or specified layer.
     feature_cutoffs : dict
         Dictionary with feature names as keys and tuples with two intensity
         cutoffs as values.
-    observation : str Column name in .obs DataFrame
-        that contains the observation used for grouping.
+    annotation : str
+        Column name in .obs DataFrame that contains the annotation
+        used for grouping.
+    layer : str, optional
+        Layer name in adata.layers to use for intensities.
+        If None, uses .X attribute.
+    **kwargs : keyword arguments
+        Additional keyword arguments to pass to scanpy's heatmap function.
 
     Returns
     -------
@@ -352,18 +601,24 @@ def threshold_heatmap(adata, feature_cutoffs, observation):
         Consistent Key: 'heatmap_ax'
         Potential Keys includes: 'groupby_ax', 'dendrogram_ax', and
         'gene_groups_ax'.
-
     """
 
-    # Assert observation is a string
-    if not isinstance(observation, str):
-        err_type = type(observation).__name__
-        err_msg = (f'Observation should be string. Got {err_type}.')
+    # Use utility functions for input validation
+    check_table(adata, tables=layer)
+    if annotation:
+        check_annotation(adata, annotations=annotation)
+    if feature_cutoffs:
+        check_feature(adata, features=list(feature_cutoffs.keys()))
+
+    # Assert annotation is a string
+    if not isinstance(annotation, str):
+        err_type = type(annotation).__name__
+        err_msg = (f'Annotation should be string. Got {err_type}.')
         raise TypeError(err_msg)
 
-    # Assert observation is a column in adata.obs DataFrame
-    if observation not in adata.obs.columns:
-        err_msg = f"'{observation}' not found in adata.obs DataFrame."
+    # Assert annotation is a column in adata.obs DataFrame
+    if annotation not in adata.obs.columns:
+        err_msg = f"'{annotation}' not found in adata.obs DataFrame."
         raise ValueError(err_msg)
 
     if not isinstance(feature_cutoffs, dict):
@@ -382,12 +637,16 @@ def threshold_heatmap(adata, feature_cutoffs, observation):
 
     adata.uns['feature_cutoffs'] = feature_cutoffs
 
-    intensity_df = pd.DataFrame(index=adata.obs_names,
-                                columns=feature_cutoffs.keys())
+    intensity_df = pd.DataFrame(
+        index=adata.obs_names, columns=feature_cutoffs.keys()
+    )
 
     for feature, cutoffs in feature_cutoffs.items():
         low_cutoff, high_cutoff = cutoffs
-        feature_values = adata[:, feature].X.flatten()
+        feature_values = (
+            adata[:, feature].layers[layer]
+            if layer else adata[:, feature].X
+        ).flatten()
         intensity_df.loc[feature_values <= low_cutoff, feature] = 0
         intensity_df.loc[(feature_values > low_cutoff) &
                          (feature_values <= high_cutoff), feature] = 1
@@ -395,7 +654,7 @@ def threshold_heatmap(adata, feature_cutoffs, observation):
 
     intensity_df = intensity_df.astype(int)
     adata.layers["intensity"] = intensity_df.to_numpy()
-    adata.obs[observation] = adata.obs[observation].astype('category')
+    adata.obs[annotation] = adata.obs[annotation].astype('category')
 
     color_map = {0: (0/255, 0/255, 139/255), 1: 'green', 2: 'yellow'}
     colors = [color_map[i] for i in range(3)]
@@ -406,13 +665,12 @@ def threshold_heatmap(adata, feature_cutoffs, observation):
     heatmap_plot = sc.pl.heatmap(
         adata,
         var_names=intensity_df.columns,
-        groupby=observation,
+        groupby=annotation,
         use_raw=False,
         layer='intensity',
         cmap=cmap,
         norm=norm,
-        swap_axes=True,
-        show=False
+        **kwargs
     )
 
     colorbar = plt.gcf().axes[-1]
@@ -428,7 +686,7 @@ def spatial_plot(
         alpha,
         vmin=-999,
         vmax=-999,
-        observation=None,
+        annotation=None,
         feature=None,
         layer=None,
         ax=None,
@@ -452,8 +710,8 @@ def spatial_plot(
     feature : str
         The feature to visualize on the spatial plot.
         Default None.
-    observation : str
-        The observation to visualize in the spatial plot.
+    annotation : str
+        The annotation to visualize in the spatial plot.
         Can't be set with feature, default None.
     layer : str
         Name of the AnnData object layer that wants to be plotted.
@@ -473,11 +731,11 @@ def spatial_plot(
         f"got {str(type(layer))}"
     err_msg_feature = "The 'feature' parameter must be a string, " + \
         f"got {str(type(feature))}"
-    err_msg_observation = "The 'observation' parameter must be a string, " + \
-        f"got {str(type(observation))}"
-    err_msg_feat_obs_coe = "Both observation and feature are passed, " + \
+    err_msg_annotation = "The 'annotation' parameter must be a string, " + \
+        f"got {str(type(annotation))}"
+    err_msg_feat_annotation_coe = "Both annotation and feature are passed, " +\
         "please provide sinle input."
-    err_msg_feat_obs_non = "Both observation and feature are None, " + \
+    err_msg_feat_annotation_non = "Both annotation and feature are None, " + \
         "please provide single input."
     err_msg_spot_size = "The 'spot_size' parameter must be an integer, " + \
         f"got {str(type(spot_size))}"
@@ -511,26 +769,27 @@ def spatial_plot(
     if feature is not None and not isinstance(feature, str):
         raise ValueError(err_msg_feature)
 
-    if observation is not None and not isinstance(observation, str):
-        raise ValueError(err_msg_observation)
+    if annotation is not None and not isinstance(annotation, str):
+        raise ValueError(err_msg_annotation)
 
-    if observation is not None and feature is not None:
-        raise ValueError(err_msg_feat_obs_coe)
+    if annotation is not None and feature is not None:
+        raise ValueError(err_msg_feat_annotation_coe)
 
-    if observation is None and feature is None:
-        raise ValueError(err_msg_feat_obs_non)
+    if annotation is None and feature is None:
+        raise ValueError(err_msg_feat_annotation_non)
 
     if 'spatial' not in adata.obsm_keys():
         err_msg = "Spatial coordinates not found in the 'obsm' attribute."
         raise ValueError(err_msg)
 
-    # Extract obs name
-    obs_names = adata.obs.columns.tolist()
-    obs_names_str = ", ".join(obs_names)
+    # Extract annotation name
+    annotation_names = adata.obs.columns.tolist()
+    annotation_names_str = ", ".join(annotation_names)
 
-    if observation is not None and observation not in obs_names:
-        error_text = f"Observation {observation} not found in the dataset." + \
-            f" Existing observations are: {obs_names_str}"
+    if annotation is not None and annotation not in annotation_names:
+        error_text = f'The annotation "{annotation}"' + \
+            'not found in the dataset.' + \
+            f" Existing annotations are: {annotation_names_str}"
         raise ValueError(error_text)
 
     # Extract feature name
@@ -571,15 +830,15 @@ def spatial_plot(
     if feature is not None:
 
         feature_index = feature_names.index(feature)
-        feature_obs = feature + "spatial_plot"
+        feature_annotation = feature + "spatial_plot"
         if vmin == -999:
             vmin = np.min(layer[:, feature_index])
         if vmax == -999:
             vmax = np.max(layer[:, feature_index])
-        adata.obs[feature_obs] = layer[:, feature_index]
-        color_region = feature_obs
+        adata.obs[feature_annotation] = layer[:, feature_index]
+        color_region = feature_annotation
     else:
-        color_region = observation
+        color_region = annotation
         vmin = None
         vmax = None
 
@@ -601,3 +860,171 @@ def spatial_plot(
         **kwargs)
 
     return ax
+
+
+def boxplot(adata, annotation=None, second_annotation=None, layer=None,
+            ax=None, features=None, log_scale=False, **kwargs):
+    """
+    Create a boxplot visualization of the features in the passed adata object.
+    This function offers flexibility in how the boxplots are displayed,
+    based on the arguments provided.
+
+    Parameters
+    ----------
+    adata : anndata.AnnData
+        The AnnData object.
+
+    annotation : str, optional
+        Annotation to determine if separate plots are needed for every label.
+
+    second_annotation : str, optional
+        Second annotation to further divide the data.
+
+    layer : str, optional
+        The name of the matrix layer to use. If not provided,
+        uses the main data matrix adata.X.
+
+    ax : matplotlib.axes.Axes, optional
+        An existing Axes object to draw the plot onto, optional.
+
+    features : list, optional
+        List of feature names to be plotted.
+        If not provided, all features will be plotted.
+
+    log_scale : bool, optional
+        If True, the Y-axis will be in log scale. Default is False.
+
+    **kwargs
+        Additional arguments to pass to seaborn.boxplot.
+        Key arguments include:
+        - `orient`: Determines the orientation of the plot.
+        * "v": Vertical orientation (default). In this case, categorical data
+           will be plotted on the x-axis, and the boxplots will be vertical.
+        * "h": Horizontal orientation. Categorical data will be plotted on the
+           y-axis, and the boxplots will be horizontal.
+    Returns
+    -------
+    fig, ax : matplotlib.figure.Figure, matplotlib.axes.Axes
+        The created figure and axes for the plot.
+
+    Examples
+    --------
+    - Multiple features boxplot: boxplot(adata, features=['GeneA','GeneB'])
+    - Boxplot grouped by a single annotation:
+      boxplot(adata, features=['GeneA'], annotation='cell_type')
+    - Boxplot for multiple features grouped by a single annotation:
+      boxplot(adata, features=['GeneA', 'GeneB'], annotation='cell_type')
+    - Nested grouping by two annotations: boxplot(adata, features=['GeneA'],
+      annotation='cell_type', second_annotation='treatment')
+    """
+
+    # Use utility functions to check inputs
+    if layer:
+        check_table(adata, tables=layer)
+    if annotation:
+        check_annotation(adata, annotations=annotation)
+    if second_annotation:
+        check_annotation(adata, annotations=second_annotation)
+    if features:
+        check_feature(adata, features=features)
+
+    if 'orient' not in kwargs:
+        kwargs['orient'] = 'v'
+
+    if kwargs['orient'] != 'v':
+        v_orient = False
+    else:
+        v_orient = True
+
+    # Validate ax instance
+    if ax and not isinstance(ax, plt.Axes):
+        raise TypeError("Input 'ax' must be a matplotlib.axes.Axes object.")
+
+    # Use the specified layer if provided
+    if layer:
+        data_matrix = adata.layers[layer]
+    else:
+        data_matrix = adata.X
+
+    # Create a DataFrame from the data matrix with features as columns
+    df = pd.DataFrame(data_matrix, columns=adata.var_names)
+
+    # Add annotations to the DataFrame if provided
+    if annotation:
+        df[annotation] = adata.obs[annotation].values
+    if second_annotation:
+        df[second_annotation] = adata.obs[second_annotation].values
+
+    # If features is None, set it to all available features
+    if features is None:
+        features = adata.var_names.tolist()
+
+    df = df[
+        features +
+        ([annotation] if annotation else []) +
+        ([second_annotation] if second_annotation else [])
+    ]
+
+    # Create the plot
+    if ax:
+        fig = ax.get_figure()
+    else:
+        fig, ax = plt.subplots(figsize=(10, 5))
+
+    # Plotting logic based on provided annotations
+    if annotation and second_annotation:
+        if v_orient:
+            sns.boxplot(data=df, y=features[0], x=annotation,
+                        hue=second_annotation, ax=ax, **kwargs)
+
+        else:
+            sns.boxplot(data=df, y=annotation, x=features[0],
+                        hue=second_annotation, ax=ax, **kwargs)
+
+        title_str = f"Nested Grouping by {annotation} and {second_annotation}"
+
+        ax.set_title(title_str)
+
+    elif annotation:
+        if len(features) > 1:
+            # Reshape the dataframe to long format for visualization
+            melted_data = df.melt(id_vars=annotation)
+            if v_orient:
+                sns.boxplot(data=melted_data, x="variable", y="value",
+                            hue=annotation,  ax=ax, **kwargs)
+            else:
+                sns.boxplot(data=melted_data, x="value", y="variable",
+                            hue=annotation,  ax=ax, **kwargs)
+            ax.set_title(f"Multiple Features Grouped by {annotation}")
+        else:
+            if v_orient:
+                sns.boxplot(data=df, y=features[0], x=annotation,
+                            ax=ax, **kwargs)
+            else:
+                sns.boxplot(data=df, x=features[0], y=annotation,
+                            ax=ax, **kwargs)
+            ax.set_title(f"Grouped by {annotation}")
+
+    else:
+        if len(features) > 1:
+            sns.boxplot(data=df[features], ax=ax, **kwargs)
+            ax.set_title("Multiple Features")
+        else:
+            if v_orient:
+                sns.boxplot(x=df[features[0]], ax=ax, **kwargs)
+            else:
+                sns.boxplot(y=df[features[0]], ax=ax, **kwargs)
+            ax.set_title("Single Boxplot")
+
+    # Check if all data points are positive and non-zero
+    all_positive = (df[features] > 0).all().all()
+
+    # If log_scale is True and all data points are positive and non-zero
+    if log_scale and all_positive:
+        plt.yscale('log')
+
+    plt.xticks(rotation=90)
+    plt.tight_layout()
+    plt.show()
+
+    return fig, ax
