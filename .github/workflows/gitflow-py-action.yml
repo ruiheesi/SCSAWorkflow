@@ -10,5 +10,7 @@ on:
 jobs:
   Activating_Parser:
     uses: fnlcr-dmap/gitflow-py/.github/workflows/parser.yml@main
+    with:
+      image_to_use: "ghcr.io/ruiheesi/pyscworkflow:dev"
     secrets:
       PAT: ${{ secrets.PAT }}
