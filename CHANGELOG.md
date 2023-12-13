@@ -6,6 +6,12 @@
 
 ### Documentation
 
+* docs(version): Automatic development release ([`5f6f344`](https://github.com/ruiheesi/SCSAWorkflow/commit/5f6f344ac766f0b6eb47c6cb68bf078a18aa32d4))
+
+* docs(version): Automatic development release ([`aacde90`](https://github.com/ruiheesi/SCSAWorkflow/commit/aacde90baf2a7b78a9a5b02a1adbebbdb3122677))
+
+* docs(version): Automatic Version Bumping ([`ed8bb19`](https://github.com/ruiheesi/SCSAWorkflow/commit/ed8bb19bd7f43e83a39a799c3c8d01e577a84af7))
+
 * docs(version): Automatic Version Bumping ([`bcda00d`](https://github.com/ruiheesi/SCSAWorkflow/commit/bcda00db4c97ee1d79700920feac0ee0db986d62))
 
 * docs(version): Automatic Version Bumping ([`262067f`](https://github.com/ruiheesi/SCSAWorkflow/commit/262067f04353a55b607802e186a27b1dbfdb06cc))
@@ -32,9 +38,31 @@
 
 ### Fix
 
+* fix: Update setup.py ([`caec389`](https://github.com/ruiheesi/SCSAWorkflow/commit/caec3894a044bda8cd9d8ced7ceaa4cc7e989c98))
+
+* fix: trial udpate 4 ([`e286f9c`](https://github.com/ruiheesi/SCSAWorkflow/commit/e286f9ce4162d180691831e7e494f13e232ee8f2))
+
+* fix: trial udpate 4 ([`03dfd7b`](https://github.com/ruiheesi/SCSAWorkflow/commit/03dfd7be161f222cf7fafb4774af304fb9096491))
+
+* fix: trial udpate 3 ([`21f9a34`](https://github.com/ruiheesi/SCSAWorkflow/commit/21f9a34f4ea9de8121ee934d8a3dfcc5ed90e9af))
+
+* fix: trial udpate 2 ([`38c4120`](https://github.com/ruiheesi/SCSAWorkflow/commit/38c412043a836dd1d0404defd3856bd27d203890))
+
 * fix: Update action file ([`bbba5bd`](https://github.com/ruiheesi/SCSAWorkflow/commit/bbba5bd8bf90ce9fe613b7c1f5a3b5ac1874db75))
 
 ### Unknown
+
+* Merge pull request #16 from ruiheesi/CD_dev
+
+fix: Update setup.py ([`690ed70`](https://github.com/ruiheesi/SCSAWorkflow/commit/690ed706bcfe2036234890292744bd15fdaf2d4e))
+
+* Merge pull request #15 from ruiheesi/CD_dev
+
+Cd dev ([`b7e384e`](https://github.com/ruiheesi/SCSAWorkflow/commit/b7e384ee1afe274be0cba63cbfb6ece71b145648))
+
+* merge ([`1d41754`](https://github.com/ruiheesi/SCSAWorkflow/commit/1d41754a993d7e6df38c710cface4399dd782599))
+
+* Merge branch &#39;main&#39; of https://github.com/ruiheesi/SCSAWorkflow into CD_dev ([`03f5930`](https://github.com/ruiheesi/SCSAWorkflow/commit/03f5930a5ba1df78503270ffe1c206c3c6903577))
 
 * Merge pull request #11 from ruiheesi/release_test
 
