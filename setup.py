@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='spac',
-    version='0.3.0',
+    version='0.3.2',
     description=(
         'SPatial Analysis for single-Cell analysis (SPAC)'
         'is a Scalable Python package for single-cell spatial protein data '
@@ -46,3 +46,4 @@ setup(
         'Programming Language :: Python :: 3.9',
     ],
 )
+
