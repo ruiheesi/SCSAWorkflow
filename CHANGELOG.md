@@ -6,6 +6,8 @@
 
 ### Documentation
 
+* docs(version): Automatic Version Bumping ([`7f35efd`](https://github.com/ruiheesi/SCSAWorkflow/commit/7f35efd21efef8410e5c46f51465b0e9ee3eb585))
+
 * docs(version): Automatic Version Bumping ([`e7e526d`](https://github.com/ruiheesi/SCSAWorkflow/commit/e7e526d08ee40a0d4149a2653d72ee895729e944))
 
 * docs: Update action file ([`4a1c0c4`](https://github.com/ruiheesi/SCSAWorkflow/commit/4a1c0c45dc6e98dfd400808d7380208289900646))
