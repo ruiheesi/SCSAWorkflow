@@ -13,5 +13,4 @@ jobs:
     with:
       image_to_use: "ghcr.io/ruiheesi/pyscworkflow:dev"
     secrets:
-      PAT: ${{ secrets.PAT }}
       NIDAP_TOKEN: ${{ secrets.NIDAP_TOKEN }}
