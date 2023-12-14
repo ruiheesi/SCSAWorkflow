@@ -6,6 +6,8 @@
 
 ### Documentation
 
+* docs(version): Automatic development release ([`9e4adac`](https://github.com/ruiheesi/SCSAWorkflow/commit/9e4adac825dbcb53636f47a8a97b41e1796fcf92))
+
 * docs(version): Automatic development release ([`0dcb729`](https://github.com/ruiheesi/SCSAWorkflow/commit/0dcb729fd92e63de0ce558daedb4158826ca4761))
 
 * docs(version): Automatic development release ([`1eafae4`](https://github.com/ruiheesi/SCSAWorkflow/commit/1eafae4c55ac8410e2c0820b3f2175e977f3b330))
@@ -30,6 +32,8 @@
 
 ### Fix
 
+* fix: test cd ([`d85c0c5`](https://github.com/ruiheesi/SCSAWorkflow/commit/d85c0c5ca6ea5f02ae9a3bf2f205ab92f24e99f0))
+
 * fix: test cd ([`666268d`](https://github.com/ruiheesi/SCSAWorkflow/commit/666268dc4cc30928c05bf333b6eb0656b1b3ac3c))
 
 * fix: test cd ([`6687af7`](https://github.com/ruiheesi/SCSAWorkflow/commit/6687af74e645ebfc148da179d9da04e310f10336))
@@ -51,6 +55,10 @@
 * perf: Update action files for latest CD ([`73e2517`](https://github.com/ruiheesi/SCSAWorkflow/commit/73e2517a98069fc2d38b405a7c4141abf22d46b0))
 
 ### Unknown
+
+* Merge pull request #27 from ruiheesi/test_CD
+
+fix: test cd ([`62c7b9e`](https://github.com/ruiheesi/SCSAWorkflow/commit/62c7b9e2deab7bf1c016bd3c546303e052e3ff6a))
 
 * Merge pull request #26 from ruiheesi/test_CD
 
