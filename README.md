@@ -1,3 +1,5 @@
+development use
+
 # SPatial Analysis for single Cell (SPAC)
 
 SPAC is a scalable, automated pipeline, under under the Single Cell Spatial Analysis Workflow (SCSAWorkflow) project aiming at analyzing single-cell spatial protein data of multiplexed whole-slide tissue images generated from technologies such as MxIF Codex and Imaging Mass Cytometry (IMC).
