@@ -6,6 +6,8 @@
 
 ### Documentation
 
+* docs(version): Automatic Version Bumping ([`3afe0c2`](https://github.com/ruiheesi/SCSAWorkflow/commit/3afe0c25fe8a1935c4488401deaecbeb878f6371))
+
 * docs(version): Automatic development release ([`8281319`](https://github.com/ruiheesi/SCSAWorkflow/commit/82813197d4a9c6efda159a3bdd3b7d84feebc5e8))
 
 * docs: Update init.py to export function methods and version ([`53b7284`](https://github.com/ruiheesi/SCSAWorkflow/commit/53b7284ceabbc0fa3d6b9175f079f010a2dd474f))
@@ -24,6 +26,8 @@
 
 ### Fix
 
+* fix: test cd ([`9293d55`](https://github.com/ruiheesi/SCSAWorkflow/commit/9293d55e01d81e115b80f8dc25a66237ae73b6b1))
+
 * fix: test cd ([`596ac37`](https://github.com/ruiheesi/SCSAWorkflow/commit/596ac37e1db358361ba48957ff009ca336cf1219))
 
 * fix: update boxplot to mute plt.show, add utils functions ([`2d94abc`](https://github.com/ruiheesi/SCSAWorkflow/commit/2d94abcdf553ec84ef081e81dbb4538dfe2e82e5))
@@ -39,6 +43,16 @@
 * perf: Update action files for latest CD ([`73e2517`](https://github.com/ruiheesi/SCSAWorkflow/commit/73e2517a98069fc2d38b405a7c4141abf22d46b0))
 
 ### Unknown
+
+* Merge pull request #23 from ruiheesi/dev
+
+Dev ([`678c1d8`](https://github.com/ruiheesi/SCSAWorkflow/commit/678c1d8275a14cb6b3b2df88cccc5ce0bb2ee8d4))
+
+* Merge pull request #22 from ruiheesi/test_CD
+
+Test cd ([`93c0b72`](https://github.com/ruiheesi/SCSAWorkflow/commit/93c0b72eddccf7ba6fcb1d64ca92d67b77eca68c))
+
+* Merge branch &#39;dev&#39; of https://github.com/ruiheesi/SCSAWorkflow into test_CD ([`14cec21`](https://github.com/ruiheesi/SCSAWorkflow/commit/14cec21f58f01a8a800001349c5d764aeca32466))
 
 * Merge pull request #21 from ruiheesi/release_dev
 
