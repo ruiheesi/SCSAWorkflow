@@ -2,9 +2,28 @@
 
 
 
+## v0.3.3 (2023-12-18)
+
+### Fix
+
+* fix: test ([`cdd8e93`](https://github.com/ruiheesi/SCSAWorkflow/commit/cdd8e93979b7c1095d299b2a1e693cdb754a83a3))
+
+### Unknown
+
+* Merge pull request #38 from ruiheesi/dev
+
+Dev ([`c15224b`](https://github.com/ruiheesi/SCSAWorkflow/commit/c15224bd6b1cc3cc11eeb6610f19c0fb3278f07c))
+
+* Merge pull request #37 from ruiheesi/test_CD
+
+fix: test ([`e3f84e5`](https://github.com/ruiheesi/SCSAWorkflow/commit/e3f84e54452dad6b61000f8404ba85e518129f08))
+
+
 ## v0.3.2 (2023-12-18)
 
 ### Documentation
+
+* docs(version): Automatic development release ([`612f7ec`](https://github.com/ruiheesi/SCSAWorkflow/commit/612f7ecaf0bee51b3a0e6902dee6ef3f80ea52fd))
 
 * docs(version): Automatic Version Bumping ([`ae2bc6c`](https://github.com/ruiheesi/SCSAWorkflow/commit/ae2bc6ca76d8d9b5bda5b6dc876cfe98b689a88f))
 
