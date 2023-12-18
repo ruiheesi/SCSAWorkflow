@@ -2,9 +2,11 @@
 
 
 
-## v0.3.2 (2023-12-15)
+## v0.3.2 (2023-12-18)
 
 ### Documentation
+
+* docs(version): Automatic Version Bumping ([`ae2bc6c`](https://github.com/ruiheesi/SCSAWorkflow/commit/ae2bc6ca76d8d9b5bda5b6dc876cfe98b689a88f))
 
 * docs(version): Automatic Version Bumping ([`389af2e`](https://github.com/ruiheesi/SCSAWorkflow/commit/389af2e85147c22bdeeff09698f7cc8df54eca44))
 
@@ -68,6 +70,8 @@
 
 ### Fix
 
+* fix: test ([`2d67399`](https://github.com/ruiheesi/SCSAWorkflow/commit/2d6739916222004c9e958e46d2d969e45e155990))
+
 * fix: Update __init__.py2 ([`7fed880`](https://github.com/ruiheesi/SCSAWorkflow/commit/7fed880b91aa05b580fef6676c8b0529dbeca641))
 
 * fix: Update __init__.py ([`b49a24c`](https://github.com/ruiheesi/SCSAWorkflow/commit/b49a24c5323053792f1a45247883e86a17c78b1c))
@@ -99,6 +103,22 @@
 * perf: Update action files for latest CD ([`73e2517`](https://github.com/ruiheesi/SCSAWorkflow/commit/73e2517a98069fc2d38b405a7c4141abf22d46b0))
 
 ### Unknown
+
+* Merge pull request #36 from ruiheesi/dev
+
+Dev ([`9942a75`](https://github.com/ruiheesi/SCSAWorkflow/commit/9942a75ddc7e2047f2a2c30ea1c1e547419d4646))
+
+* Merge pull request #35 from ruiheesi/test_CD
+
+Test cd ([`82dd25d`](https://github.com/ruiheesi/SCSAWorkflow/commit/82dd25d8fdbd8b830e2305fe54969ef01f39276e))
+
+* Merge remote-tracking branch &#39;origin&#39; into test_CD ([`edda96d`](https://github.com/ruiheesi/SCSAWorkflow/commit/edda96dc13c54bda1c1054c3881ddaece5446e59))
+
+* merge main ([`4557ed6`](https://github.com/ruiheesi/SCSAWorkflow/commit/4557ed61a2a8db6294d39eadbb80f3ce365accf5))
+
+* test ([`1910cc1`](https://github.com/ruiheesi/SCSAWorkflow/commit/1910cc183893d4aebc278ba3e07f4f77ec3cb746))
+
+* test ([`af9cd0d`](https://github.com/ruiheesi/SCSAWorkflow/commit/af9cd0d2485758d0ca8148e9ed2eaea4710a2981))
 
 * Merge pull request #34 from ruiheesi/release_dev
 
