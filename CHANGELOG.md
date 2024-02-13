@@ -2,26 +2,34 @@
 
 
 
-## v0.3.3 (2023-12-18)
+## v0.3.4 (2024-02-13)
 
 ### Fix
 
-* fix: test ([`cdd8e93`](https://github.com/ruiheesi/SCSAWorkflow/commit/cdd8e93979b7c1095d299b2a1e693cdb754a83a3))
+* fix: Update README.md ([`29306ba`](https://github.com/ruiheesi/SCSAWorkflow/commit/29306ba41b0c87d1b46c3c3c51394ae2377e88f5))
+
+* fix: Update gitflow-py-action.yml ([`a5ef513`](https://github.com/ruiheesi/SCSAWorkflow/commit/a5ef513f95b1775f1adb46d7855b9681cae8d37f))
 
 ### Unknown
 
-* Merge pull request #38 from ruiheesi/dev
+* Merge pull request #41 from ruiheesi/dev
 
-Dev ([`c15224b`](https://github.com/ruiheesi/SCSAWorkflow/commit/c15224bd6b1cc3cc11eeb6610f19c0fb3278f07c))
+Dev ([`3cd6ba8`](https://github.com/ruiheesi/SCSAWorkflow/commit/3cd6ba8b1fc3647206e7ae4b7cdd6e574e296450))
 
-* Merge pull request #37 from ruiheesi/test_CD
+* Merge pull request #40 from ruiheesi/test_CD
 
-fix: test ([`e3f84e5`](https://github.com/ruiheesi/SCSAWorkflow/commit/e3f84e54452dad6b61000f8404ba85e518129f08))
+Test cd ([`d39497c`](https://github.com/ruiheesi/SCSAWorkflow/commit/d39497c27c394ceef8981bd75b74b4c41929aaeb))
+
+* Merge pull request #39 from ruiheesi/release_dev
+
+Release dev ([`4cdec9a`](https://github.com/ruiheesi/SCSAWorkflow/commit/4cdec9a47df26d713bcfb8b7907e5e1af06d0fbf))
 
 
-## v0.3.2 (2023-12-18)
+## v0.3.3 (2023-12-18)
 
 ### Documentation
+
+* docs(version): Automatic development release ([`e14dedc`](https://github.com/ruiheesi/SCSAWorkflow/commit/e14dedc0e599c72959dac28d2c9c5603b86d0d24))
 
 * docs(version): Automatic development release ([`612f7ec`](https://github.com/ruiheesi/SCSAWorkflow/commit/612f7ecaf0bee51b3a0e6902dee6ef3f80ea52fd))
 
@@ -89,6 +97,8 @@ fix: test ([`e3f84e5`](https://github.com/ruiheesi/SCSAWorkflow/commit/e3f84e544
 
 ### Fix
 
+* fix: test ([`cdd8e93`](https://github.com/ruiheesi/SCSAWorkflow/commit/cdd8e93979b7c1095d299b2a1e693cdb754a83a3))
+
 * fix: test ([`2d67399`](https://github.com/ruiheesi/SCSAWorkflow/commit/2d6739916222004c9e958e46d2d969e45e155990))
 
 * fix: Update __init__.py2 ([`7fed880`](https://github.com/ruiheesi/SCSAWorkflow/commit/7fed880b91aa05b580fef6676c8b0529dbeca641))
@@ -122,6 +132,14 @@ fix: test ([`e3f84e5`](https://github.com/ruiheesi/SCSAWorkflow/commit/e3f84e544
 * perf: Update action files for latest CD ([`73e2517`](https://github.com/ruiheesi/SCSAWorkflow/commit/73e2517a98069fc2d38b405a7c4141abf22d46b0))
 
 ### Unknown
+
+* Merge pull request #38 from ruiheesi/dev
+
+Dev ([`c15224b`](https://github.com/ruiheesi/SCSAWorkflow/commit/c15224bd6b1cc3cc11eeb6610f19c0fb3278f07c))
+
+* Merge pull request #37 from ruiheesi/test_CD
+
+fix: test ([`e3f84e5`](https://github.com/ruiheesi/SCSAWorkflow/commit/e3f84e54452dad6b61000f8404ba85e518129f08))
 
 * Merge pull request #36 from ruiheesi/dev
 
