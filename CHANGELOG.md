@@ -2,22 +2,24 @@
 
 
 
-## v0.4.0 (2024-05-20)
+## v0.5.0 (2024-05-20)
 
 ### Feature
 
-* feat: test ([`76bebda`](https://github.com/ruiheesi/SCSAWorkflow/commit/76bebda443fa21e8b4934315b2924f0952fc1b11))
+* feat: testtest ([`bdbbd97`](https://github.com/ruiheesi/SCSAWorkflow/commit/bdbbd97f43cc730ab7881d03bbffae724f58bea0))
 
 ### Unknown
 
-* Merge pull request #43 from ruiheesi/dev
+* Merge pull request #44 from ruiheesi/dev
 
-feat: test ([`dbe6960`](https://github.com/ruiheesi/SCSAWorkflow/commit/dbe69608a117a1db758d85ea42e297e07b0742a3))
+feat: testtest ([`07344d5`](https://github.com/ruiheesi/SCSAWorkflow/commit/07344d55d14950b5fd672935c9ddbaa01a3c041f))
 
 
-## v0.3.4 (2024-02-13)
+## v0.4.0 (2024-05-20)
 
 ### Documentation
+
+* docs(version): Automatic development release ([`1e2047b`](https://github.com/ruiheesi/SCSAWorkflow/commit/1e2047b47147359bad993dda63e044623d57bfd1))
 
 * docs(version): Automatic development release ([`687b449`](https://github.com/ruiheesi/SCSAWorkflow/commit/687b4494bd221e1b5dcd867b547810a1cbdc3c46))
 
@@ -87,6 +89,10 @@ feat: test ([`dbe6960`](https://github.com/ruiheesi/SCSAWorkflow/commit/dbe69608
 
 * docs(version): Automatic development release ([`9b8606c`](https://github.com/ruiheesi/SCSAWorkflow/commit/9b8606c86c151af3ea964aa96954bc4bf49eed79))
 
+### Feature
+
+* feat: test ([`76bebda`](https://github.com/ruiheesi/SCSAWorkflow/commit/76bebda443fa21e8b4934315b2924f0952fc1b11))
+
 ### Fix
 
 * fix: Update README.md ([`29306ba`](https://github.com/ruiheesi/SCSAWorkflow/commit/29306ba41b0c87d1b46c3c3c51394ae2377e88f5))
@@ -128,6 +134,10 @@ feat: test ([`dbe6960`](https://github.com/ruiheesi/SCSAWorkflow/commit/dbe69608
 * perf: Update action files for latest CD ([`73e2517`](https://github.com/ruiheesi/SCSAWorkflow/commit/73e2517a98069fc2d38b405a7c4141abf22d46b0))
 
 ### Unknown
+
+* Merge pull request #43 from ruiheesi/dev
+
+feat: test ([`dbe6960`](https://github.com/ruiheesi/SCSAWorkflow/commit/dbe69608a117a1db758d85ea42e297e07b0742a3))
 
 * Merge pull request #41 from ruiheesi/dev
 
