@@ -6,24 +6,26 @@
 
 ### Feature
 
-* feat: test ([`1f7b4df`](https://github.com/ruiheesi/SCSAWorkflow/commit/1f7b4df81c3a0c9803d061f4b4ffff8d83a217a6))
+* feat: testtest ([`b74b44e`](https://github.com/ruiheesi/SCSAWorkflow/commit/b74b44e9b59a1ea437a47a54d51e8e94f4c53ec0))
 
-* feat: testtest ([`d2a1076`](https://github.com/ruiheesi/SCSAWorkflow/commit/d2a1076930ddf9bae5ae82873103612f7ccdf03a))
+* feat: test ([`e196b79`](https://github.com/ruiheesi/SCSAWorkflow/commit/e196b7937d12c68f189e86e64371850be75675a6))
 
 ### Unknown
 
-* Merge pull request #48 from ruiheesi/dev
+* Merge pull request #50 from ruiheesi/dev
 
-feat: test ([`016f043`](https://github.com/ruiheesi/SCSAWorkflow/commit/016f043293d683d66230c1410278c4b56b07a81e))
+feat: testtest ([`a8a7969`](https://github.com/ruiheesi/SCSAWorkflow/commit/a8a796936f49c8a94598f2c1fe2bbb4567037003))
 
-* Merge pull request #47 from ruiheesi/dev
+* Merge pull request #49 from ruiheesi/dev
 
-feat: testtest ([`c7106b0`](https://github.com/ruiheesi/SCSAWorkflow/commit/c7106b0d8d2447fa51847126d693b46c5e386f43))
+feat: test ([`c505a4c`](https://github.com/ruiheesi/SCSAWorkflow/commit/c505a4cc58aef281309232c71cef700e691b6d0c))
 
 
-## v0.7.0 (2024-05-20)
+## v0.7.0 (2024-05-21)
 
 ### Documentation
+
+* docs(version): Automatic development release ([`42dd2f0`](https://github.com/ruiheesi/SCSAWorkflow/commit/42dd2f04a2afc682f339ee80105c804fa71bb390))
 
 * docs(version): Automatic development release ([`1322d54`](https://github.com/ruiheesi/SCSAWorkflow/commit/1322d54d168c47ca773f0b158b0f4d3e303418e0))
 
@@ -103,6 +105,10 @@ feat: testtest ([`c7106b0`](https://github.com/ruiheesi/SCSAWorkflow/commit/c710
 
 ### Feature
 
+* feat: test ([`1f7b4df`](https://github.com/ruiheesi/SCSAWorkflow/commit/1f7b4df81c3a0c9803d061f4b4ffff8d83a217a6))
+
+* feat: testtest ([`d2a1076`](https://github.com/ruiheesi/SCSAWorkflow/commit/d2a1076930ddf9bae5ae82873103612f7ccdf03a))
+
 * feat: testttt ([`7c7123c`](https://github.com/ruiheesi/SCSAWorkflow/commit/7c7123cda96c42c2c4af5a7d39e8679c84410cae))
 
 * feat: test ([`5835900`](https://github.com/ruiheesi/SCSAWorkflow/commit/58359000c65d30d04502cf8a90ecbc6a038042db))
@@ -152,6 +158,14 @@ feat: testtest ([`c7106b0`](https://github.com/ruiheesi/SCSAWorkflow/commit/c710
 * perf: Update action files for latest CD ([`73e2517`](https://github.com/ruiheesi/SCSAWorkflow/commit/73e2517a98069fc2d38b405a7c4141abf22d46b0))
 
 ### Unknown
+
+* Merge pull request #48 from ruiheesi/dev
+
+feat: test ([`016f043`](https://github.com/ruiheesi/SCSAWorkflow/commit/016f043293d683d66230c1410278c4b56b07a81e))
+
+* Merge pull request #47 from ruiheesi/dev
+
+feat: testtest ([`c7106b0`](https://github.com/ruiheesi/SCSAWorkflow/commit/c7106b0d8d2447fa51847126d693b46c5e386f43))
 
 * Merge pull request #46 from ruiheesi/dev
 
