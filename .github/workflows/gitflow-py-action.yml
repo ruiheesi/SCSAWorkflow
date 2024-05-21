@@ -11,6 +11,7 @@ jobs:
   Activating_Parser:
     uses: fnlcr-dmap/gitflow-py/.github/workflows/parser.yml@main
     with:
+      image_to_use: "ghcr.io/ruiheesi/pyscworkflow:latest"
       artifact_rid_production: "ri.artifacts.main.repository.ba55e77c-243c-450d-84c3-74713ce194f3"
       artifact_rid_development: "ri.artifacts.main.repository.c2c0fa69-dbc0-483f-90f8-cfb429d405f0"
     secrets:
