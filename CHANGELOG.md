@@ -2,22 +2,24 @@
 
 
 
-## v0.8.1 (2024-05-21)
+## v0.9.0 (2024-05-21)
 
-### Feature
+### Step
 
-* feat: test ([`239f3e7`](https://github.com/ruiheesi/SCSAWorkflow/commit/239f3e78f9f621d9dbdc79f6483bbd6d6104d0d5))
+* step: test Update gitflow-py-action.yml ([`3cc8931`](https://github.com/ruiheesi/SCSAWorkflow/commit/3cc8931f5f62a1923245f23ab2cc8f1f57e4c4e1))
 
 ### Unknown
 
-* Merge pull request #51 from ruiheesi/dev
+* Merge pull request #52 from ruiheesi/dev
 
-feat: test ([`4722357`](https://github.com/ruiheesi/SCSAWorkflow/commit/4722357e6e48429aad3e2155dcfbe59f40a3793c))
+step: test Update gitflow-py-action.yml ([`5c92334`](https://github.com/ruiheesi/SCSAWorkflow/commit/5c92334440ecaef69e5c3a167c62243916252288))
 
 
-## v0.8.0 (2024-05-21)
+## v0.8.1 (2024-05-21)
 
 ### Ci
+
+* ci(version): Automatic development release ([`e5a4cc5`](https://github.com/ruiheesi/SCSAWorkflow/commit/e5a4cc5c239e4af238661f1bd9f351c32ab0a6b0))
 
 * ci(version): Automatic development release ([`fb63ab5`](https://github.com/ruiheesi/SCSAWorkflow/commit/fb63ab50a91c67f0eec4f4fd380f66604f0fa21a))
 
@@ -103,6 +105,8 @@ feat: test ([`4722357`](https://github.com/ruiheesi/SCSAWorkflow/commit/4722357e
 
 ### Feature
 
+* feat: test ([`239f3e7`](https://github.com/ruiheesi/SCSAWorkflow/commit/239f3e78f9f621d9dbdc79f6483bbd6d6104d0d5))
+
 * feat: testtest ([`b74b44e`](https://github.com/ruiheesi/SCSAWorkflow/commit/b74b44e9b59a1ea437a47a54d51e8e94f4c53ec0))
 
 * feat: test ([`e196b79`](https://github.com/ruiheesi/SCSAWorkflow/commit/e196b7937d12c68f189e86e64371850be75675a6))
@@ -160,6 +164,10 @@ feat: test ([`4722357`](https://github.com/ruiheesi/SCSAWorkflow/commit/4722357e
 * perf: Update action files for latest CD ([`73e2517`](https://github.com/ruiheesi/SCSAWorkflow/commit/73e2517a98069fc2d38b405a7c4141abf22d46b0))
 
 ### Unknown
+
+* Merge pull request #51 from ruiheesi/dev
+
+feat: test ([`4722357`](https://github.com/ruiheesi/SCSAWorkflow/commit/4722357e6e48429aad3e2155dcfbe59f40a3793c))
 
 * Merge pull request #50 from ruiheesi/dev
 
