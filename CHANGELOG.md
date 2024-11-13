@@ -1,72 +1,5 @@
 # CHANGELOG
 
-
-
-## v0.9.0 (2024-05-21)
-
-### Step
-
-* step: test Update gitflow-py-action.yml ([`3cc8931`](https://github.com/ruiheesi/SCSAWorkflow/commit/3cc8931f5f62a1923245f23ab2cc8f1f57e4c4e1))
-
-### Unknown
-
-* Merge pull request #52 from ruiheesi/dev
-
-step: test Update gitflow-py-action.yml ([`5c92334`](https://github.com/ruiheesi/SCSAWorkflow/commit/5c92334440ecaef69e5c3a167c62243916252288))
-
-
-## v0.8.1 (2024-05-21)
-
-### Ci
-
-* ci(version): Automatic development release ([`e5a4cc5`](https://github.com/ruiheesi/SCSAWorkflow/commit/e5a4cc5c239e4af238661f1bd9f351c32ab0a6b0))
-
-* ci(version): Automatic development release ([`fb63ab5`](https://github.com/ruiheesi/SCSAWorkflow/commit/fb63ab50a91c67f0eec4f4fd380f66604f0fa21a))
-
-### Documentation
-
-* docs(version): Automatic development release ([`42dd2f0`](https://github.com/ruiheesi/SCSAWorkflow/commit/42dd2f04a2afc682f339ee80105c804fa71bb390))
-
-* docs(version): Automatic development release ([`1322d54`](https://github.com/ruiheesi/SCSAWorkflow/commit/1322d54d168c47ca773f0b158b0f4d3e303418e0))
-
-* docs(version): Automatic development release ([`0d0fa3b`](https://github.com/ruiheesi/SCSAWorkflow/commit/0d0fa3bba8fb2404b3770cb91eb98c538c5eebe8))
-
-* docs(version): Automatic development release ([`040b2d1`](https://github.com/ruiheesi/SCSAWorkflow/commit/040b2d15b9415dd1627ecf193218f596a73fc2a4))
-
-* docs(version): Automatic development release ([`1e2047b`](https://github.com/ruiheesi/SCSAWorkflow/commit/1e2047b47147359bad993dda63e044623d57bfd1))
-
-* docs(version): Automatic development release ([`687b449`](https://github.com/ruiheesi/SCSAWorkflow/commit/687b4494bd221e1b5dcd867b547810a1cbdc3c46))
-
-* docs(version): Automatic development release ([`e14dedc`](https://github.com/ruiheesi/SCSAWorkflow/commit/e14dedc0e599c72959dac28d2c9c5603b86d0d24))
-
-* docs(version): Automatic development release ([`612f7ec`](https://github.com/ruiheesi/SCSAWorkflow/commit/612f7ecaf0bee51b3a0e6902dee6ef3f80ea52fd))
-
-* docs(version): Automatic Version Bumping ([`ae2bc6c`](https://github.com/ruiheesi/SCSAWorkflow/commit/ae2bc6ca76d8d9b5bda5b6dc876cfe98b689a88f))
-
-* docs(version): Automatic Version Bumping ([`389af2e`](https://github.com/ruiheesi/SCSAWorkflow/commit/389af2e85147c22bdeeff09698f7cc8df54eca44))
-
-* docs(version): Automatic Version Bumping ([`9980a6d`](https://github.com/ruiheesi/SCSAWorkflow/commit/9980a6dd213039d90720e565257193d78835f7f8))
-
-* docs(version): Automatic Version Bumping ([`51e3d33`](https://github.com/ruiheesi/SCSAWorkflow/commit/51e3d33782d1a31c642b500c2cc43b9210111b0b))
-
-* docs(version): Automatic Version Bumping ([`5e28989`](https://github.com/ruiheesi/SCSAWorkflow/commit/5e28989574eb3e5edf2c8a0d419b4c4ecf6fa6e7))
-
-* docs(version): Automatic Version Bumping ([`97809b5`](https://github.com/ruiheesi/SCSAWorkflow/commit/97809b57c85200696069f4dd20d1911f5ff4abef))
-
-* docs(version): Automatic Version Bumping ([`58bd7c9`](https://github.com/ruiheesi/SCSAWorkflow/commit/58bd7c9f24a88267189f2385a6330fb361ff87f0))
-
-* docs(version): Automatic Version Bumping ([`3fdd944`](https://github.com/ruiheesi/SCSAWorkflow/commit/3fdd944573432b50b3ed223792089b599cdf3ab1))
-
-* docs(version): Automatic Version Bumping ([`c35efbe`](https://github.com/ruiheesi/SCSAWorkflow/commit/c35efbe2a52a54826b07f351793b9e2a28218b07))
-
-* docs(version): Automatic Version Bumping ([`5ae893d`](https://github.com/ruiheesi/SCSAWorkflow/commit/5ae893d6ea06842c9b554cbacebb889626a03c2c))
-
-* docs(version): Automatic Version Bumping ([`b47c49e`](https://github.com/ruiheesi/SCSAWorkflow/commit/b47c49ec052016efc0277c9ad48abf68e9b3026a))
-
-* docs(version): Automatic Version Bumping ([`2b4afbe`](https://github.com/ruiheesi/SCSAWorkflow/commit/2b4afbe9d4b2739d2687ac06c74180aa460d05a5))
-
-* docs(version): Automatic Version Bumping ([`42f5997`](https://github.com/ruiheesi/SCSAWorkflow/commit/42f5997360e09a5f1efd2e3628396720ab11870b))
-
 * docs(version): Automatic development release ([`3451d1b`](https://github.com/ruiheesi/SCSAWorkflow/commit/3451d1b4b89d60ee8543de774e70863efb8271c7))
 
 * docs(version): Automatic development release ([`a99d4ec`](https://github.com/ruiheesi/SCSAWorkflow/commit/a99d4ecae1514f4c4aebe64957d9d74cc7a7cc8d))
@@ -123,7 +56,38 @@ step: test Update gitflow-py-action.yml ([`5c92334`](https://github.com/ruiheesi
 
 * feat: test ([`76bebda`](https://github.com/ruiheesi/SCSAWorkflow/commit/76bebda443fa21e8b4934315b2924f0952fc1b11))
 
+### Feature
+
+* feat: correct functions and unit tests based on CR ([`f97f25b`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/f97f25bc05be5c13ba58d351d3c54a8e39fd2484))
+
+* feat: Adding pin color function and tests ([`67d68ce`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/67d68ce63ea8ee14d7d271e657add083eca6669c))
+
+* feat(normalize_per_batch): add intra_batch normalization and unit tests ([`7ec823b`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/7ec823b808e0afc9928b34b8b7c7bf588754b1dc))
+
+* feat(visualization): Added the option to visualiza an associated table in dimentionality reduction plot ([`480fa58`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/480fa5801d326c5a3edb2be7fc89ac54b5765477))
+
+* feat(relational_heatmap): added tests and function ([`e1927c7`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/e1927c7f61296140cbaa90c07318f9fee3087032))
+
+* feat(neighborhood_profile): Add neighborhood_profile_core function for calculating neighborhood profiles ([`1b1eede`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/1b1eedec22788aa122e4fdfcf87ddc89defe40db))
+
+* feat(phenograph): Add optional argument to define output layer in the returned Anndata object ([`1982459`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/198245928f4a5946cc3fe8a0a2b14708265b777e))
+
+* feat(ripley_L): Add functionality for calculating Ripley statistic with multiple phenotypes
+
+This commit introduces changes to the Squidpy Ripley function to enhance its
+functionality. It now includes options to calculate the Ripley statistic for
+multiple phenotypes, allowing for more comprehensive spatial analysis of the
+data. Other options include providing a radii vector, passing a constant value
+for the area, and allowing callers to set the number of cells/observations ([`ad368c3`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/ad368c3b1be648dcec6ef1c50bfdd25264f481d1))
+
+* feat(batch_normalize): add input_layer and z-score method and fix unit tests ([`5bd1ebe`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/5bd1ebe1827b0b9c9266fccaf65c6e294bf4f28b))
+
+* feat(batch_normalize): add features input_layer and z-score method and corresponding unit tests ([`a693640`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/a693640cfd413c0e61d06d9ed93b147b0f70d8fa))
+
+* feat: Add sankey plot and related utils ([`0f70c6c`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/0f70c6cd4c01dcfcac9f84f5e2df142de25bf41e))
+
 ### Fix
+
 
 * fix: Update README.md ([`29306ba`](https://github.com/ruiheesi/SCSAWorkflow/commit/29306ba41b0c87d1b46c3c3c51394ae2377e88f5))
 
@@ -162,6 +126,36 @@ step: test Update gitflow-py-action.yml ([`5c92334`](https://github.com/ruiheesi
 * perf: change production rid ([`6723eef`](https://github.com/ruiheesi/SCSAWorkflow/commit/6723eef29ce60e2286dccc044ad77aa780b5ed7f))
 
 * perf: Update action files for latest CD ([`73e2517`](https://github.com/ruiheesi/SCSAWorkflow/commit/73e2517a98069fc2d38b405a7c4141abf22d46b0))
+
+### Refactor
+
+* refactor: changed the name input_derived_feature to associated_table ([`e50a609`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/e50a609741fba66de14ebb191d8ec52da608ef9c))
+
+* refactor: batch_normalize and unit test ([`cb619a1`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/cb619a1b795e80ed5062737485f84d569e86eed4))
+
+* refactor(neighborhood_profile): use the check utilities to raise warnings ([`e2409a6`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/e2409a6a9bd569024f8e0bc03017c3aa686439a3))
+
+* refactor: batch_normalize unit tests ([`cc73faa`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/cc73faab46719164f59ded07f98833f52763ac0a))
+
+* refactor: batch_normalize and z_score unit test ([`632848d`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/632848dc2d76531d707b1323f3b54a3456704d6e))
+
+* refactor(select_values): remove unnecessary logging and add astype(str) ([`50410c2`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/50410c22414b833fd69b76a7da23bc179d3ee1da))
+
+* refactor(logging): Update log messages in function load_csv ([`94b3b79`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/94b3b79956183431d7ff740b9f1c87fc2de9b128))
+
+* refactor: Update docstring format ([`07d8541`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/07d8541af7e6a817ef21e2c5a784555dbf668fdf))
+
+### Step
+
+* step: minor release update ([`41cf19a`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/41cf19a75cb0178fa30f6a1e0d7f6ee999ef07f0))
+
+### Style
+
+* style: Fix minor flake8 formatting ([`cf97301`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/cf9730111e12b9a4a47427c79e15028e88e17fee))
+
+### Test
+
+* test(arcsinh): Changed the implementation of the warning when layer exists ([`4127b45`](https://github.com/FNLCR-DMAP/SCSAWorkflow/commit/4127b452dfff032ecd80269be3b15553acecfd28))
 
 ### Unknown
 
