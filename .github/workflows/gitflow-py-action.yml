@@ -11,8 +11,9 @@ jobs:
   Activating_Parser:
     uses: fnlcr-dmap/gitflow-py/.github/workflows/parser.yml@main
     with:
-      artifact_rid_production: "ri.artifacts.main.repository.92434867-d670-4bc2-9625-570d322ef0b2"
-      artifact_rid_development: "ri.artifacts.main.repository.e537634a-0a9c-42f1-affb-1a152c2e331b"
+      artifact_rid_production: "ri.artifacts.main.repository.20ce29a2-3803-4eae-b325-8fe367d47d1e"
+      artifact_rid_development: "ri.artifacts.main.repository.99a97542-6794-4913-9281-02819ce47884"
+      image_to_use: "ghcr.io/fnlcr-dmap/scsaworkflow:spac_py39"
     secrets:
       NIDAP_TOKEN_PRODUCTION: ${{ secrets.NIDAP_TOKEN_PRODUCTION }}
       NIDAP_TOKEN_DEVELOPMENT: ${{ secrets.NIDAP_TOKEN_DEVELOPMENT }}
