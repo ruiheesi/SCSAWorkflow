@@ -157,3 +157,7 @@ Datetime: 2024-05-21 19:11:20, Version:  spac-dev-0.8.1-py38_0.tar.bz2
 Datetime: 2024-05-21 19:26:34, Version:  spac-dev-0.9.0-py38_0.tar.bz2
 <br>[View Commit Log](Commit_Log_spac-dev-0.9.0-py38_0.log)
 <br>Deployment Status: Default:Unauthorized
+
+Datetime: 2024-11-13 15:25:52, Version:  spac-dev_py39_update_testing-0.8.0-py39_0.tar.bz2
+<br>[View Commit Log](Commit_Log_spac-dev_py39_update_testing-0.8.0-py39_0.log)
+<br>Deployment Status: Success
