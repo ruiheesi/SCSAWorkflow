@@ -1,12 +1,12 @@
 {% set version = '<CURRENT_VERSION>' %}
 
 package:
-  name: spac
+  name: spac_py39_update_testing
   version: {{ version }}
 
 source:
-  git_url: https://github.com/FNLCR-DMAP/SCSAWorkflow.git
-  git_rev: "continuous_deployment"
+  git_url: https://github.com/ruiheesi/SCSAWorkflow.git
+  git_rev: "py39_update_test"
  
 build:
   number: 0
