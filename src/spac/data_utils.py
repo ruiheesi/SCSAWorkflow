@@ -807,9 +807,8 @@ def bin2cat(data, one_hot_annotations, new_annotation):
     into a new categorical column.
 
     Parameters
-    ----------
-    data : pandas.DataFrame
-        The pandas dataframe containing the one hot encoded annotations.
+        data : pandas.DataFrame
+            The pandas dataframe containing the one hot encoded annotations.
 
     one_hot_annotations : str or list of str
         A string or a list of strings representing
@@ -820,9 +819,9 @@ def bin2cat(data, one_hot_annotations, new_annotation):
         The column name for new categorical annotation to be created.
 
     Returns
-    -------
-    pandas.DataFrame
-        DataFrame with new categorical column added.
+    --------
+        pandas.DataFrame
+            DataFrame with new categorical column added.
 
     Example:
     --------
@@ -892,12 +891,12 @@ def combine_dfs(dataframes: list):
     is different than the primary.
 
     Parameters
-    ----------
+    -----------
     dataframes : list[pd.DataFrame]
         A list of pandas dataframe to be combined
 
     Return
-    ------
+    ----------
     A pd.DataFrame of combined dataframs.
     """
     # Check if input is list

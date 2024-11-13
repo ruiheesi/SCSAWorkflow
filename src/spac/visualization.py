@@ -685,7 +685,7 @@ def hierarchical_heatmap(adata, annotation, features=None, layer=None,
           in the function.
 
     Returns
-    -------
+    ----------
     mean_intensity : pandas.DataFrame
         A DataFrame containing the mean intensity of cells for each annotation.
     clustergrid : seaborn.matrix.ClusterGrid
