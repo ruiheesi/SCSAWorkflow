@@ -1,10 +1,10 @@
 # CHANGELOG
 
 
+## v0.8.1 (2024-11-14)
+
+
 ## v0.8.0 (2024-11-13)
-
-
-## v0.7.11 (2024-05-21)
 
 ### Bug Fixes
 
@@ -234,6 +234,9 @@
   ([`cf97301`](https://github.com/ruiheesi/SCSAWorkflow/commit/cf9730111e12b9a4a47427c79e15028e88e17fee))
 
 ### Continuous Integration
+
+- **version**: Automatic development release
+  ([`7e33dfd`](https://github.com/ruiheesi/SCSAWorkflow/commit/7e33dfd2512917a2f6939d6325af27ac09ee1ab4))
 
 - **version**: Automatic development release
   ([`9319538`](https://github.com/ruiheesi/SCSAWorkflow/commit/9319538ec1971d205a563e96404359b4ab917861))
@@ -533,6 +536,12 @@
 - Test
   ([`76bebda`](https://github.com/ruiheesi/SCSAWorkflow/commit/76bebda443fa21e8b4934315b2924f0952fc1b11))
 
+- Updateing conda recipe
+  ([`2f6f815`](https://github.com/ruiheesi/SCSAWorkflow/commit/2f6f8159608bcada8d4555cc78a5111e57a80458))
+
+- Updating the conda recipe
+  ([`1707d4a`](https://github.com/ruiheesi/SCSAWorkflow/commit/1707d4aa0c1884e4c8b768e51ffcde4aa82dd7ff))
+
 - Adding the github conda package repo for customized conda build
   ([`d6c84b4`](https://github.com/ruiheesi/SCSAWorkflow/commit/d6c84b438060b77ceee044e4cc765abb11d4ed72))
 
@@ -545,9 +554,6 @@
 - **combine_annotations**: Data utility to combine multiple annotaitons into one
   ([`58dfd38`](https://github.com/ruiheesi/SCSAWorkflow/commit/58dfd38415c49535824e745ee56c8b80056736e6))
 
-- Add conda env setup
-  ([`df257b8`](https://github.com/ruiheesi/SCSAWorkflow/commit/df257b86ba3f8e8f6e66c6c5549161c1d1c090f4))
-
 - **add_pin_color_rules**: Added the summary to the adata object
   ([`aaceb41`](https://github.com/ruiheesi/SCSAWorkflow/commit/aaceb411181fc2323832170b83a962eee8fad5e7))
 
@@ -556,6 +562,9 @@
 
 - Validation for label column in obs
   ([`f09ae2e`](https://github.com/ruiheesi/SCSAWorkflow/commit/f09ae2ecc0038135111e539a6ba1e413837e479c))
+
+- Add conda env setup
+  ([`df257b8`](https://github.com/ruiheesi/SCSAWorkflow/commit/df257b86ba3f8e8f6e66c6c5549161c1d1c090f4))
 
 - **ripley_L**: Add functionality for calculating Ripley statistic with multiple phenotypes
   ([`ad368c3`](https://github.com/ruiheesi/SCSAWorkflow/commit/ad368c3b1be648dcec6ef1c50bfdd25264f481d1))
@@ -615,9 +624,6 @@ This commit introduces changes to the Squidpy Ripley function to enhance its fun
 - Updating git ignore to include conda build items
   ([`0410f2d`](https://github.com/ruiheesi/SCSAWorkflow/commit/0410f2ddaf7c3abb6a427378776b32f9daa02264))
 
-- Loosen version constrains
-  ([`0e09e8c`](https://github.com/ruiheesi/SCSAWorkflow/commit/0e09e8ca0976b1fbaed9c8ff4e4011bac0c112d8))
-
 - **plot_ripley_l**: Printed the warning when phenotype is missing in addition to log
   ([`36da762`](https://github.com/ruiheesi/SCSAWorkflow/commit/36da762bdf104cd1d109f673e8acdb35b53f6e2c))
 
@@ -626,6 +632,9 @@ This commit introduces changes to the Squidpy Ripley function to enhance its fun
 
 - Added unittests
   ([`b469383`](https://github.com/ruiheesi/SCSAWorkflow/commit/b469383251abd1512ae041756c05d3477497dc6f))
+
+- Loosen version constrains
+  ([`0e09e8c`](https://github.com/ruiheesi/SCSAWorkflow/commit/0e09e8ca0976b1fbaed9c8ff4e4011bac0c112d8))
 
 - Deming CD
   ([`4fe198f`](https://github.com/ruiheesi/SCSAWorkflow/commit/4fe198f5835a7048d23cdfc9f21e96711b0f7012))
