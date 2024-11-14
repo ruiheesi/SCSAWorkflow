@@ -1,10 +1,15 @@
 # CHANGELOG
 
 
+## v0.8.2 (2024-11-14)
+
+### Features
+
+- Update recipe
+  ([`ef70836`](https://github.com/ruiheesi/SCSAWorkflow/commit/ef70836f126f9346797eea5bc7ebf9b94847b19c))
+
+
 ## v0.8.1 (2024-11-14)
-
-
-## v0.8.0 (2024-11-13)
 
 ### Bug Fixes
 
@@ -234,6 +239,9 @@
   ([`cf97301`](https://github.com/ruiheesi/SCSAWorkflow/commit/cf9730111e12b9a4a47427c79e15028e88e17fee))
 
 ### Continuous Integration
+
+- **version**: Automatic development release
+  ([`918fe56`](https://github.com/ruiheesi/SCSAWorkflow/commit/918fe56b243437e50b17864e706c91de8bca199c))
 
 - **version**: Automatic development release
   ([`7e33dfd`](https://github.com/ruiheesi/SCSAWorkflow/commit/7e33dfd2512917a2f6939d6325af27ac09ee1ab4))
