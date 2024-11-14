@@ -21,7 +21,7 @@ requirements:
   host:
     - python=3.9.13
     - setuptools
-    run:
+  run:
     - python=3.9.13               # Core Python Package
     - numpy=1.26.4                # Core Python Package
     - pandas=1.5.3                # Data Manipulation and Analysis
