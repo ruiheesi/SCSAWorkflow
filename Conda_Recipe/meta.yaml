@@ -1,7 +1,7 @@
 {% set version = '<CURRENT_VERSION>' %}
 
 package:
-  name: spac
+  name: spac_parmap_incorp_dev
   version: {{ version }}
 
 source:
